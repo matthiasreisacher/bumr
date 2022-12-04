@@ -1,0 +1,40 @@
+[package]
+name = "bumr"
+version = "0.0.1"
+authors = ["Matthias Reisacher <matthias.reisacher@gmail.com>"]
+edition = "2018"
+repository = ""
+license = "GNU AGPLv3"
+license-file = "LICENSE"
+
+[features]
+default = ["api-rocket", "db-dynamodb", "cache-sqlite"]
+# Use Rocket as web framework
+api-rocket = ["rocket", "rocket_contrib"]
+# Use AWS DynamoDB as database
+db-dynamodb = ["mz_rusoto_core", "mz_rusoto_dynamodb"]
+# Use SQLite3 as cache
+cache-sqlite = ["rusqlite"]
+
+[dependencies]
+anyhow = "1.0"
+async-trait = "0.1"
+chrono = "0.4"
+env_logger = "0.8"
+futures = "0.3"
+log = "0.4"
+mz_rusoto_core = { version = "0.46", optional = true }
+mz_rusoto_dynamodb = { version = "0.46", optional = true }
+r2d2 = "0.8"
+rocket = { git = "https://github.com/SergioBenitez/Rocket", optional = true }
+rusqlite = { version = "0.24", optional = true }
+serde = "1.0"
+tokio = { version = "0.2", features = ["full"] }
+toml = "0.5"
+uuid = { version = "0.8", features = ["v4"] }
+
+[dependencies.rocket_contrib]
+git = "https://github.com/SergioBenitez/Rocket"
+default-features = false
+features = ["serve", "helmet", "databases"]
+optional = true

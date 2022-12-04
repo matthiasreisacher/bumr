@@ -1,0 +1,17 @@
+[global]
+port = 8080
+keep_alive = 5
+read_timeout = 5
+write_timeout = 5
+limits = { forms = 32768 }
+
+[development]
+address = "localhost"
+log = "normal"
+secret_key = "A8/dUkE0CgRhXm9bGhV46lqOV4Xpd9m/Yi61JQaT3AU="
+workers = 4
+
+[production]
+address = "0.0.0.0"
+log = "critical"
+# Set via env-vars on system: secret_key
